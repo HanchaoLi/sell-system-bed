@@ -1,5 +1,11 @@
 package com.example.order.controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/order")
 public class OrderController {
 
 
@@ -10,6 +16,7 @@ public class OrderController {
      * 4. deduct product stock
      * 5. crate order
      */
+    @PostMapping("/create")
     public void create() {
 
     }
