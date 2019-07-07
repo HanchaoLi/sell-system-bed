@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
     PARAM_ERROR(1, "param error"),
+    CART_EMPTY(2, "empty cart"),
     ;
 
     ResultEnum(Integer code, String message) {

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -34,13 +35,13 @@ public class OrderServiceImpl implements OrderService {
 
         // create order
         OrderMaster orderMaster = new OrderMaster();
-        BeanUtils.copyProperties(orderDTO, orderMaster);
-
         orderDTO.setOrderId(KeyUtil.genUniqueKey());
+        BeanUtils.copyProperties(orderDTO, orderMaster);
         orderMaster.setOrderAmount(BigDecimal.valueOf(2.0));
         orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
-
+        orderMaster.setCreateTime(new Date());
+        orderMaster.setUpdateTime(new Date());
         orderMasterRepository.save(orderMaster);
 
         return orderDTO;
