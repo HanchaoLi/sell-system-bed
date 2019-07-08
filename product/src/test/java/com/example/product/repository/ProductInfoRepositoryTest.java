@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -22,6 +23,12 @@ public class ProductInfoRepositoryTest {
     @Test
     public void findByProductStatus() throws Exception{
         List<ProductInfo> prod = productInfoRepository.findByProductStatus(0);
+        Assert.assertTrue(prod.size() > 0);
+    }
+
+    @Test
+    public void findByProductIdIn() {
+        List<ProductInfo> prod = productInfoRepository.findByProductIdIn(Arrays.asList("157875196366160022"));
         Assert.assertTrue(prod.size() > 0);
     }
 }
