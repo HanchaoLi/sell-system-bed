@@ -6,10 +6,8 @@ spring:
     username: root
     password: de123321
     url: jdbc:mysql://localhost:3306/demo?characterEncoding=utf-8&useSSL=false&serverTimezone=EST
-
   jpa:
     show-sql: true
-
 eureka:
   client:
     service-url:
