@@ -1,10 +1,6 @@
 package com.example.product.vo;
 
 import lombok.Data;
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Data
 public class ResultVO<T> {

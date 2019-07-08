@@ -3,8 +3,7 @@ package com.example.product.vo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.math.BigDecimal;
 
 @Data
