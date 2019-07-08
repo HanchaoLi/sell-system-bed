@@ -3,7 +3,6 @@ package com.imooc.product.enums;
 import lombok.Getter;
 
 /**
- * Created by 廖师兄
  * 2017-12-10 23:00
  */
 @Getter

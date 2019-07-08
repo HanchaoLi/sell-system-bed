@@ -6,8 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * Created by 廖师兄
- * 2017-12-09 22:11
+ * 2017-12-09 22:s11
  */
 @Data
 public class ProductVO {

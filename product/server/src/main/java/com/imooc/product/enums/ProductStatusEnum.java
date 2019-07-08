@@ -3,8 +3,6 @@ package com.imooc.product.enums;
 import lombok.Getter;
 
 /**
- * 商品上下架状态
- * Created by 廖师兄
  * 2017-12-09 22:00
  */
 @Getter

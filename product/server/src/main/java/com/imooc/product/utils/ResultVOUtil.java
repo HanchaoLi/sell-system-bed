@@ -3,7 +3,6 @@ package com.imooc.product.utils;
 import com.imooc.product.VO.ResultVO;
 
 /**
- * Created by 廖师兄
  * 2017-12-09 22:53
  */
 public class ResultVOUtil {
