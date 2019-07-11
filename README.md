@@ -15,3 +15,10 @@
     
     kill -9 4681
     
+## Docker and Devops
+  after install docker, run command:
+  
+  docker run -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3.8.0-beta.4-management
+  
+    to install rabbit MQ into docker
+    
