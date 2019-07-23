@@ -8,7 +8,11 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: dev
-
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     service-url:
