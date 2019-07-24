@@ -1,7 +1,6 @@
 spring:
   application:
     name: order
-
   cloud:
     config:
       discovery:
@@ -13,11 +12,7 @@ spring:
         myMessage1:
           group: order
           content-type: application/json
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+
 eureka:
   client:
     service-url:
