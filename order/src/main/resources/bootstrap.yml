@@ -12,6 +12,7 @@ spring:
       bindings:
         myMessage1:
           group: order
+          content-type: application/json
   rabbitmq:
     host: localhost
     port: 5672
