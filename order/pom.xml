@@ -77,6 +77,16 @@
             <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.imooc</groupId>
+            <artifactId>product-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.imooc</groupId>
+            <artifactId>product-common</artifactId>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
