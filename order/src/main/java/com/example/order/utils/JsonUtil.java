@@ -1,6 +1,7 @@
 package com.example.order.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtil {
@@ -18,6 +19,15 @@ public class JsonUtil {
     public static Object fromJson(String string, Class classType) {
         try{
             return objectMapper.readValue(string, classType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object fromJson(String string, TypeReference typeReference) {
+        try{
+            return objectMapper.readValue(string, typeReference);
         } catch (Exception e) {
             e.printStackTrace();
         }

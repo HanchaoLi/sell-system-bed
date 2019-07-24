@@ -16,12 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Created by 廖师兄
  * 2017-12-09 21:59
  */
 @Service
@@ -51,8 +51,25 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    @Transactional
+
     public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
+
+        List<ProductInfo> productInfoList = decreaseStockProcess(decreaseStockInputList);
+
+
+        List<ProductInfoOutput>productInfoOutputList = productInfoList.stream().map(e -> {
+            ProductInfoOutput output = new ProductInfoOutput();
+            BeanUtils.copyProperties(e, output);
+            return output;
+        }).collect(Collectors.toList());
+
+        amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(productInfoOutputList));
+
+    }
+
+    @Transactional
+    public List<ProductInfo> decreaseStockProcess(List<DecreaseStockInput> decreaseStockInputList) {
+        List<ProductInfo> productInfoList = new ArrayList<>();
         for (DecreaseStockInput decreaseStockInput: decreaseStockInputList) {
             Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(decreaseStockInput.getProductId());
             //判断商品是否存在
@@ -70,7 +87,8 @@ public class ProductServiceImpl implements ProductService {
             productInfo.setProductStock(result);
             productInfoRepository.save(productInfo);
 
-            amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(productInfo));
+            productInfoList.add(productInfo);
         }
+        return productInfoList;
     }
 }
