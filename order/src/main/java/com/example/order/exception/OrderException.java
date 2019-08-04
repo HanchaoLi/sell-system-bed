@@ -2,7 +2,7 @@ package com.example.order.exception;
 
 import com.example.order.enums.ResultEnum;
 
-public class OrderException extends Exception{
+public class OrderException extends RuntimeException{
 
     private Integer code;
     public OrderException(Integer code, String message) {

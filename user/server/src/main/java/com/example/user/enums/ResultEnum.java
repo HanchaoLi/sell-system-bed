@@ -1,15 +1,12 @@
-package com.example.order.enums;
+package com.example.user.enums;
 
 import lombok.Getter;
 
 @Getter
 public enum ResultEnum {
-
-    PARAM_ERROR(1, "param error"),
-    CART_EMPTY(2, "empty cart"),
-    ORDER_NOT_EXIST(3, "order not exist"),
-    ORDER_STATUS_ERROR(4, "order status error"),
-    ORDER_DETAIL_NOT_EXSIT(5, "order detail not exsit"),
+    LOGIN_SUCCESS(0, "login success!"),
+    LOGIN_FAIL(-1, "login fail!"),
+    ROLE_ERROR(2, "wrong permission role!")
     ;
 
     ResultEnum(Integer code, String message) {
