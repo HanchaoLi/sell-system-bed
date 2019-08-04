@@ -13,7 +13,6 @@ spring:
         myMessage1:
           group: order
           content-type: application/json
-
 eureka:
   client:
     service-url:

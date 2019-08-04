@@ -1,11 +1,17 @@
 package com.example.apigateway.filter;
 
+import com.example.apigateway.constrant.RedisConstrant;
+import com.example.apigateway.util.CookieUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_DECORATION_FILTER_ORDER;
@@ -13,6 +19,9 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 
 @Component
 public class AuthFilter extends ZuulFilter {
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
     @Override
     public String filterType() {
         return PRE_TYPE;
@@ -39,7 +48,22 @@ public class AuthFilter extends ZuulFilter {
          * /order/finish only access by seller
          * /product/list can access by anyone
          */
-
+        if ("/order/create".equals(request.getRequestURI())) {
+            Cookie cookie = CookieUtil.get(request,"openid");
+            if (cookie == null || StringUtils.isEmpty(cookie.getValue())) {
+                requestContext.setSendZuulResponse(false);
+                requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
+            }
+        }
+        if ("/order/finish".equals(request.getRequestURI())) {
+            Cookie cookie = CookieUtil.get(request,"token");
+            if (cookie == null
+                    || StringUtils.isEmpty(cookie.getValue())
+                    || StringUtils.isEmpty(redisTemplate.opsForValue().get(String.format(RedisConstrant.TOKEN_TEMPLATE, cookie.getValue())))) {
+                requestContext.setSendZuulResponse(false);
+                requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
+            }
+        }
 
         return null;
     }
