@@ -26,6 +26,7 @@ zuul:
     myProduct:
       path: /myProduct/**
       serviceId: product
-management:
-  security:
-    enabled: false
+  ignored-patterns:
+    - /**/product/listForOrder
+    - /**/product/decreaseStock
+
