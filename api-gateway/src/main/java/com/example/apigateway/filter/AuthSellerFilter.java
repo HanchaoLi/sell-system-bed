@@ -53,7 +53,7 @@ public class AuthSellerFilter extends ZuulFilter {
          * /order/finish only access by seller
          * /product/list can access by anyone
          */
-        
+
         Cookie cookie = CookieUtil.get(request,"token");
         if (cookie == null
                 || StringUtils.isEmpty(cookie.getValue())
