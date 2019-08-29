@@ -9,6 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
+/**
+ * This is a test controller for Hystrix
+ */
 @RestController
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class HystrixController {
