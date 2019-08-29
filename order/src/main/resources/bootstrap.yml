@@ -26,5 +26,9 @@ hystrix:
           thread:
             timeoutInMillionseconds: 1000
 
+feign:
+  hystrix:
+    enabled: true
+
 
 
