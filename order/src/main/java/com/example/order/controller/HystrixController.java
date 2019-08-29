@@ -16,20 +16,6 @@ import java.util.Arrays;
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class HystrixController {
 
-    @HystrixCommand(commandProperties = {
-            // set circult break time
-            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
-
-            // enable curcuit breaker
-            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
-
-            // request threshold
-            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
-
-            // set error percentage
-            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60")
-
-    })
     @GetMapping("/getProductInfoList")
     public String getProductInfo() {
         RestTemplate restTemplate = new RestTemplate();
